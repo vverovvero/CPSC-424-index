@@ -8,26 +8,50 @@
 	<body>
 		<h1> GPU Ray tracer </h1>
 		<p> Wendy Chen <br>
-			CPSC 424 Final Project, Fall 2016
-		</p>
-
-		<p> ...insert test image
+			CPSC 424 Final Project, Spring 2016
 		</p>
 	
 		<p>
 			<b> Abstract </b>
-		</p>
-		
-		<p>
-		..base code taken from Javascript ray tracer, Fall 2015, refactoring... Thanks to Jakub Kowalik for pair programming to help refactor the code from Javascript to C.
-		...conversion of serial C code to parallel code done by me, for this class. explain the basics of design decision (each thread gets its own copy of scene), and explain CUDA/GPU briefly.  Indicate speed up observed.  Point to final report for more details.
 		</p>	
+
+		<p>
+		This GPU Ray tracer project seeks to address the bottleneck introduced by an image with a large amount of pixels and a high number of samples taken at each pixel.  A large number of jittered samples per pixel is desired for anti-aliasing, but the render time for the image slows down by a factor of the number of samples when samples are computed in a serial manner.  
+		</p>
+
+		<p>
+		The base code for this project was taken from a Javascript serial ray tracer project that I worked on during Fall 2015.  Special thanks to Jakub Kowalik for pair programming to refactor the code from Javascript to C.  I implemented the parallelization design and conversion of the serial ray tracer into a parallelized ray tracer in C.
+		</p>
+
+		<p>
+		In this project, I address parallelizing the pixel sampling process.  Each pixel is assigned to a thread, so one thread computes all the samples for only a single pixel.  I use CUDA to access the an NVIDIA GPU.  The grid is created with th esame dimensions as the desired image size, and the kernel assigns each thread to a pixel, based on the thread's row and column.  Scene information is loaded onto each thread in this parallelization approach.  Each thread safely writes the computed color into a globally shared array, which is sent to the host to be reassembled as an image.
+		</p>
+
+		<p>
+		Please see the final report for more details and final results.
+		</p>
+
+		<p>
+			<i>
+			The image below was used as a test image for measuring render times of the serial and parallel programs.
+			</i>
+		</p>
+
+		<img src="test.png" alt="Image used for timing tests" style="width:512px;height:512px;">
+
+		<p>
+			<b> Compilation Details </b>
+		</p>
+
+		<p>
+		This code compiles on MacOSX and assumes access to an NVIDIA GPU.  The Cairo image library must also be installed for png generation.
+		</p>
 
 		<p>
 			<b> Links: </b>
 		</p>
-		<p> final report... source code 
-		</p>
+		<a href="ParallelFinalReport.pdf"> Final Report </a> <br>
+		<a href="https://github.com/vverovvero/cs424_parallel"> Source Code </a> <br>
 
 	</body>
 </html>
