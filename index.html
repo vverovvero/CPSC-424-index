@@ -24,7 +24,7 @@
 		</p>
 
 		<p>
-		In this project, I address parallelizing the pixel sampling process.  Each pixel is assigned to a thread, so one thread computes all the samples for only a single pixel.  I use CUDA to access the an NVIDIA GPU.  The grid is created with th esame dimensions as the desired image size, and the kernel assigns each thread to a pixel, based on the thread's row and column.  Scene information is loaded onto each thread in this parallelization approach.  Each thread safely writes the computed color into a globally shared array, which is sent to the host to be reassembled as an image.
+		In this project, I address parallelizing the pixel sampling process.  Each pixel is assigned to a thread, so one thread computes all the samples for only a single pixel.  I use CUDA to access the an NVIDIA GPU.  The grid is created with the same dimensions as the desired image size, and the kernel assigns each thread to a pixel, based on the thread's row and column.  Scene information is loaded onto each thread in this parallelization approach.  Each thread safely writes the computed color into a globally shared array, which is sent to the host to be reassembled as an image.
 		</p>
 
 		<p>
