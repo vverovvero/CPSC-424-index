@@ -1,0 +1,7 @@
+This is my final project from CPSC 424 Parallel Programming, Spring 2016.
+
+My project is about parallelizing a ray tracer for the GPU, using CUDA.
+
+The URL is: 
+https://vverovvero.github.io/CPSC-424-index/
+
